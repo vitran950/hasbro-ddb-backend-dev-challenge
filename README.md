@@ -15,4 +15,5 @@ IMPROVEMENTS
 - turn JS into TS for strict types
 - Switch over from RESTful API to GraphQL API
 - turn from commonJS -> ES Modules
+- add more logic to consider different body/param inputs from end-users
 - add middleware for logging/authentication
