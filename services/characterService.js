@@ -5,7 +5,22 @@ const applyDamage = async (collection, name, damage, type) => {
     throw new Error(`Character ${name} does not exist`);
   }
 
-  // determine how the type will affect damage - no DnD background to know
+  // re-calculate damage base on attack type
+  for (const defenseObj of character.defenses) {
+    if (defenseObj.type == type) {
+      switch (defenseObj.defense) {
+        case "immunity":
+          damage = 0;
+          break;
+        case "resistance":
+          damage /= 2;
+          break;
+      }
+      break;
+    }
+  }
+
+  // apply damage to temp-HP/primary-HP
   if (character.tempHitPoints && character.tempHitPoints > 0) {
     if (character.tempHitPoints >= damage) {
       character.tempHitPoints -= damage;
@@ -17,6 +32,7 @@ const applyDamage = async (collection, name, damage, type) => {
     character.hitPoints -= damage;
   }
 
+  // ensure HP does not go below 0
   if (character.hitPoints < 0) {
     character.hitPoints = 0;
   }
@@ -30,6 +46,7 @@ const applyDamage = async (collection, name, damage, type) => {
   };
 
   await collection.updateOne({ _id: character._id }, updateQry);
+  // modify message based on damage type?
   return `${name}'s HP = ${character.hitPoints} and temporary HP = ${character.tempHitPoints}.`;
 };
 
