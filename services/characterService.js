@@ -2,21 +2,23 @@ const applyDamage = async (collection, name, damage, type) => {
   const character = await collection.findOne({ name: name });
 
   if (!character) {
-    throw new Error(`Character ${name} does not exist`);
+    throw new Error(`Character ${name} does not exist.`);
   }
 
   // re-calculate damage base on attack type
-  for (const defenseObj of character.defenses) {
-    if (defenseObj.type == type) {
-      switch (defenseObj.defense) {
-        case "immunity":
-          damage = 0;
-          break;
-        case "resistance":
-          damage /= 2;
-          break;
+  if (character.defenses && character.defenses.length > 0) {
+    for (const defenseObj of character.defenses) {
+      if (defenseObj.type == type) {
+        switch (defenseObj.defense) {
+          case "immunity":
+            damage = 0;
+            break;
+          case "resistance":
+            damage /= 2;
+            break;
+        }
+        break;
       }
-      break;
     }
   }
 
