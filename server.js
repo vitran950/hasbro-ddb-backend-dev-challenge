@@ -64,10 +64,9 @@ app.put("/character/:name/damage", async (req, res) => {
       }
 
       await collection.updateOne({ _id: character._id }, updateQry);
-      // TODO: add console log for debugging purposes
-      res.send(
-        `${name}'s HP = ${character.hitPoints} and temporary HP = ${character.tempHitPoints}.`
-      );
+      const message = `${name}'s HP = ${character.hitPoints} and temporary HP = ${character.tempHitPoints}.`;
+      console.log("(PUT) /character/:name/damage: " + message);
+      res.send(message);
     } else {
       return res.status(404).send(`Character ${name} does not exist`);
     }
@@ -93,7 +92,9 @@ app.put("/character/:name/heal", async (req, res) => {
         { $set: { hitPoints: character.hitPoints } }
       );
 
-      res.send(`${name}'s HP = ${character.hitPoints}.`);
+      const message = `${name}'s HP = ${character.hitPoints}.`;
+      console.log("(PUT) /character/:name/heal: " + message);
+      res.send(message);
     } else {
       res.status(404).send(`Character ${name} does not exist.`);
     }
@@ -126,7 +127,9 @@ app.put("/character/:name/tempHitPoints", async (req, res) => {
         { $set: { tempHitPoints: character.tempHitPoints } }
       );
 
-      res.send(`${name}'s temporary HP = ${character.tempHitPoints}.`);
+      const message = `${name}'s temporary HP = ${character.tempHitPoints}.`;
+      console.log("(PUT) /character/:name/tempHitPoints: " + message);
+      res.send(message);
     } else {
       res.status(404).send(`Character ${name} does not exist.`);
     }
