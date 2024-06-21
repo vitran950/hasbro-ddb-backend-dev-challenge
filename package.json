@@ -4,8 +4,8 @@
   "description": "https://github.com/DnDBeyond/back-end-developer-challenge",
   "main": "server.js",
   "scripts": {
-    "start-local-mongodb": "docker-compose -f mongo-docker/docker-compose.yml up -d",
-    "stop-local-mongodb": "docker-compose -f mongo-docker/docker-compose.yml down",
+    "start-local-mongodb": "docker-compose up -d",
+    "stop-local-mongodb": "docker-compose down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
