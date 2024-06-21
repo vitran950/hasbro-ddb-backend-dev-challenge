@@ -5,10 +5,10 @@ https://github.com/DnDBeyond/back-end-developer-challenge
 RUNNING MONGODB LOCALLY (need to have docker installed):
 
 to start:
-docker-compose up -d
+npm run start-local-mongodb
 
 to stop:
-docker-compose down
+npm run stop-local-mongodb
 
 IMPROVEMENTS
 
@@ -17,3 +17,4 @@ IMPROVEMENTS
 - turn from commonJS -> ES Modules
 - add more logic to consider different body/param inputs from end-users
 - add middleware for logging/authentication
+- refactor to handle different environment variables

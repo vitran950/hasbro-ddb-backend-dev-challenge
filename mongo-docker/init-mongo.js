@@ -1,5 +1,3 @@
-// TODO: store into it's own docker folder
-// TODO: add npm script to run the docker commands
 // TODO: move the "dnd" to a constant file
 db = db.getSiblingDB("dnd");
 
